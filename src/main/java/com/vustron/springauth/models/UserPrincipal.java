@@ -7,13 +7,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserPrincipal implements UserDetails {
 
   private Users user;
-
-  public UserPrincipal(Users user) {
-    this.user = user;
-  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

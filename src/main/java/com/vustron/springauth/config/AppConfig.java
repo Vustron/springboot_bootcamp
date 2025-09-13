@@ -9,11 +9,9 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -35,29 +33,29 @@ public class AppConfig {
         .build();
   }
 
-  @Bean
-  public UserDetailsService userDetailsService() {
-    UserDetails user1 = User
-        .withDefaultPasswordEncoder()
-        .username("John")
-        .password("pass")
-        .roles("USER")
-        .build();
+  // @Bean
+  // public UserDetailsService userDetailsService() {
+  // UserDetails user1 = User
+  // .withDefaultPasswordEncoder()
+  // .username("John")
+  // .password("pass")
+  // .roles("USER")
+  // .build();
 
-    UserDetails user2 = User
-        .withDefaultPasswordEncoder()
-        .username("Juan")
-        .password("pass")
-        .roles("ADMIN")
-        .build();
+  // UserDetails user2 = User
+  // .withDefaultPasswordEncoder()
+  // .username("Juan")
+  // .password("pass")
+  // .roles("ADMIN")
+  // .build();
 
-    return new InMemoryUserDetailsManager(user1, user2);
-  }
+  // return new InMemoryUserDetailsManager(user1, user2);
+  // }
 
   @Bean
   public AuthenticationProvider authenticationProvider() {
     DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-    provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+    provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
     provider.setUserDetailsService(userDetailsService);
     return provider;
   }

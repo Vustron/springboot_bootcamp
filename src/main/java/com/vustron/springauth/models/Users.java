@@ -3,7 +3,14 @@ package com.vustron.springauth.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Users {
 
   @Id
@@ -11,27 +18,4 @@ public class Users {
   private String username;
   private String password;
 
-  public int getId() {
-    return id;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
 }
