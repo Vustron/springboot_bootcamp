@@ -35,12 +35,12 @@ public class UserPrincipal implements UserDetails {
 
   @Override
   public boolean isAccountNonExpired() {
-    return UserDetails.super.isAccountNonExpired();
+    return true;
   }
 
   @Override
   public boolean isAccountNonLocked() {
-    return UserDetails.super.isAccountNonLocked();
+    return true;
   }
 
   @Override
@@ -52,5 +52,4 @@ public class UserPrincipal implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
-
 }
